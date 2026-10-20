@@ -1,0 +1,318 @@
+@import '@fontsource-variable/bodoni-moda/opsz.css';
+@import '@fontsource-variable/inter/index.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-outer: #c79ae8;
+  --color-outer-light: #d2b0ec;
+  --color-background: #050505;
+  --color-background-soft: #0b0b0d;
+  --color-surface: #111014;
+  --color-text: #f8f5fa;
+  --color-text-muted: #a5a0ab;
+  --color-accent: #c79ae8;
+  --color-accent-soft: #d9b8f1;
+  --color-border: rgba(255, 255, 255, 0.14);
+
+  --frame-x: clamp(6px, 0.9vw, 14px);
+  --frame-y: clamp(6px, 0.9vw, 14px);
+  --frame-radius: clamp(14px, 1.6vw, 24px);
+  --pad-x: clamp(22px, 6.2vw, 104px);
+  --nav-h: 76px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Wide screens: keep the canvas to a premium reading width, lavender grows. */
+@media (min-width: 1900px) {
+  :root {
+    --frame-x: calc((100vw - 1840px) / 2);
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-outer);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #050505;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  section[id] {
+    scroll-margin-top: calc(var(--frame-y) + var(--nav-h) - 8px);
+  }
+  h1, h2, h3, h4, p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ───────── Frame: lavender outer margin with rounded canvas ───────── */
+.frame-mask {
+  position: fixed;
+  inset: var(--frame-y) var(--frame-x);
+  border-radius: var(--frame-radius);
+  box-shadow: 0 0 0 100vmax var(--color-outer);
+  pointer-events: none;
+  z-index: 90;
+}
+.canvas {
+  background: var(--color-background);
+  padding: var(--frame-y) var(--frame-x);
+  min-height: 100svh;
+}
+.canvas-inner {
+  max-width: 100%;
+  padding-inline: var(--pad-x);
+  margin-inline: auto;
+}
+
+/* ───────── Typography system ───────── */
+.display {
+  font-family: 'Bodoni Moda Variable', 'Bodoni Moda', Didot, Georgia, serif;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  text-transform: uppercase;
+  line-height: 0.96;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+.display-sentence {
+  text-transform: none;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+.eyebrow {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.eyebrow-muted {
+  color: var(--color-text-muted);
+}
+.body-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+}
+.body-copy strong { color: var(--color-text); font-weight: 500; }
+.hairline { position: relative; }
+.hairline::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--color-border);
+  pointer-events: none;
+}
+.hl-armed .hairline::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.5s var(--ease);
+}
+.hl-armed .hairline.in::before { transform: scaleX(1); }
+
+/* Underlined editorial link */
+.link-u {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block: 0.35rem;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.link-u::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transition: transform 0.5s var(--ease), background-color 0.3s;
+}
+.link-u:hover { color: var(--color-accent); }
+.link-u:hover::after { transform: scaleX(0.35); }
+.link-u .arrow { transition: transform 0.5s var(--ease); }
+.link-u:hover .arrow { transform: translate(3px, -3px); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: background-color 0.35s, color 0.35s, border-color 0.35s;
+}
+.btn-solid {
+  background-color: var(--color-accent);
+  background-image: linear-gradient(var(--color-text), var(--color-text));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 0%;
+  color: #050505;
+  border: 1px solid var(--color-accent);
+  transition: background-size 0.55s var(--ease), border-color 0.35s;
+}
+.btn-solid:hover { background-size: 100% 100%; border-color: var(--color-text); }
+.btn-ghost { border: 1px solid var(--color-border); color: var(--color-text); }
+.btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ───────── Hero headline line reveal (pure CSS, works without JS) ───────── */
+.line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.line-mask > span {
+  display: block;
+  animation: line-up 1.15s var(--ease) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes line-up {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+.fade-in {
+  animation: fade-in 1.2s var(--ease) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.photo-reveal {
+  animation: photo-reveal 1.5s var(--ease) 0.35s both;
+}
+@keyframes photo-reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* ───────── Project rows ───────── */
+.project-row .project-title { transition: transform 0.6s var(--ease), color 0.3s; }
+.project-row:hover .project-title,
+.project-row:focus-within .project-title { transform: translateX(14px); color: var(--color-accent); }
+
+/* ───────── Architecture diagram ───────── */
+.dg-edge {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 7;
+  opacity: 0.85;
+}
+.dg-box {
+  fill: var(--color-background-soft);
+  stroke: rgba(199, 154, 232, 0.55);
+  stroke-width: 1;
+}
+.dg-box--accent { fill: rgba(199, 154, 232, 0.12); stroke: var(--color-accent); }
+.dg-label {
+  fill: var(--color-text);
+  font-family: 'Inter Variable', Inter, sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.dg-tag {
+  fill: var(--color-accent);
+  font-family: 'Inter Variable', Inter, sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dg-edge { animation: dg-flow 1.4s linear infinite; }
+  .dg[data-state='armed'] .dg-node { opacity: 0; transform: translateY(10px); }
+  .dg[data-state='armed'] .dg-edge { opacity: 0; }
+  .dg[data-state='live'] .dg-node {
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    transition-delay: calc(var(--i) * 130ms);
+  }
+  .dg[data-state='live'] .dg-edge {
+    transition: opacity 0.8s ease;
+    transition-delay: calc(var(--i) * 130ms + 250ms);
+  }
+}
+@keyframes dg-flow { to { stroke-dashoffset: -24; } }
+
+/* ───────── Reduced motion ───────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Slim lavender scrollbar */
+html { scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-background); }
+
+/* Container for cqi-based fluid display type */
+.canvas-inner { container-type: inline-size; }
+
+/* ───────── Split-word headline reveal ───────── */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.07em 0.04em 0.12em;
+  margin: -0.07em -0.04em -0.12em;
+}
+.split-inner { display: inline-block; will-change: transform; }
+
+/* ───────── Ticker band ───────── */
+.ticker { overflow: hidden; border-block: 1px solid var(--color-border); }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 48s linear infinite;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ───────── Current-role pulse ───────── */
+.pulse-dot { position: relative; }
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+@keyframes pulse-ring {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track, .pulse-dot::after { animation: none !important; }
+  .hl-armed .hairline::before { transform: none; }
+}
