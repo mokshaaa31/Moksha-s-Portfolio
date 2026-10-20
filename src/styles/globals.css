@@ -46,7 +46,9 @@
     font-size: 16px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* fallback for browsers without clip */
     overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
   }
   ::selection {
     background: var(--color-accent);
@@ -70,7 +72,7 @@
   position: fixed;
   inset: var(--frame-y) var(--frame-x);
   border-radius: var(--frame-radius);
-  box-shadow: 0 0 0 100vmax var(--color-outer);
+  box-shadow: 0 0 0 calc((var(--frame-x) + var(--frame-y)) * 1.5 + var(--frame-radius)) var(--color-outer);
   pointer-events: none;
   z-index: 90;
 }
@@ -153,6 +155,7 @@
   transform-origin: left;
   transition: transform 0.5s var(--ease), background-color 0.3s;
 }
+.link-u::before { content: ''; position: absolute; inset: -8px -6px; }
 .link-u:hover { color: var(--color-accent); }
 .link-u:hover::after { transform: scaleX(0.35); }
 .link-u .arrow { transition: transform 0.5s var(--ease); }
@@ -315,4 +318,16 @@ html { scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-b
 @media (prefers-reduced-motion: reduce) {
   .ticker-track, .pulse-dot::after { animation: none !important; }
   .hl-armed .hairline::before { transform: none; }
+}
+
+/* ───────── Phones: smaller type (rem-based sizes scale together) ───────── */
+@media (max-width: 639px) {
+  html { font-size: 14.5px; }
+  body { font-size: 15px; }
+  /* keep tiny uppercase labels legible after the scale-down */
+  .eyebrow { font-size: 0.8rem; }
+  .text-xs,
+  [class*='text-[0.7rem]'],
+  [class*='text-[0.72rem]'],
+  [class*='text-[0.78rem]'] { font-size: 11.5px; }
 }

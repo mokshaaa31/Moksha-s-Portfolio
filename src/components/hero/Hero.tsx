@@ -32,7 +32,7 @@ export default function Hero() {
       {/* Headline: label sits left of line one, line two flush left, as in an editorial masthead */}
       <h1 id="hero-title" className="display">
         <span className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-end sm:gap-[clamp(1.5rem,5cqi,5rem)]">
-          <span className="eyebrow eyebrow-muted fade-in max-w-[13rem] shrink-0 pb-[0.9em] !tracking-[0.16em]" style={{ '--d': '0.9s' } as React.CSSProperties}>
+          <span className="eyebrow eyebrow-muted fade-in shrink-0 sm:max-w-[13rem] pb-[0.9em] !tracking-[0.16em]" style={{ '--d': '0.9s' } as React.CSSProperties}>
             {profile.label}
           </span>
           <span className="line-mask sm:whitespace-nowrap text-[clamp(2.2rem,7.6cqi,6.4rem)] text-ink">
@@ -45,7 +45,7 @@ export default function Hero() {
       </h1>
 
       <div className="mt-10 grid items-end gap-12 md:mt-12 md:grid-cols-12 md:gap-8">
-        <figure className="md:col-span-5">
+        <figure className="md:col-span-6 lg:col-span-5">
           <div className="photo-reveal overflow-hidden bg-outer">
             <img
               src={photo.src}
@@ -57,13 +57,13 @@ export default function Hero() {
               className="hero-img block h-auto w-full object-cover will-change-transform"
             />
           </div>
-          <figcaption className="fade-in mt-4 flex justify-between text-[0.72rem] uppercase tracking-[0.18em] text-muted" style={{ '--d': '1.4s' } as React.CSSProperties}>
+          <figcaption className="fade-in mt-4 flex flex-col gap-1 text-[0.72rem] sm:flex-row sm:justify-between uppercase tracking-[0.18em] text-muted" style={{ '--d': '1.4s' } as React.CSSProperties}>
             <span>{profile.name}</span>
             <span>{profile.location}</span>
           </figcaption>
         </figure>
 
-        <div className="fade-in md:col-span-4 md:col-start-8 md:pb-10" style={{ '--d': '1.1s' } as React.CSSProperties}>
+        <div className="fade-in md:col-span-6 md:col-start-7 md:pb-10 lg:col-span-4 lg:col-start-8" style={{ '--d': '1.1s' } as React.CSSProperties}>
           <div className="space-y-5 text-[0.95rem] leading-[1.8] text-muted">
             {profile.intro.map((p) => (
               <p key={p}>{p}</p>

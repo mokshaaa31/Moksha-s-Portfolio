@@ -38,7 +38,7 @@ export default function ExperienceTimeline() {
       />
 
       {experiences.map((exp) => (
-        <li key={exp.company} className="relative pb-12 pl-9 last:pb-0 md:grid md:grid-cols-[var(--tl-col)_minmax(0,1fr)] md:gap-x-[var(--tl-gap)] md:pb-14 md:pl-0">
+        <li key={exp.company} className="relative pb-12 pl-8 last:pb-0 md:grid md:grid-cols-[var(--tl-col)_minmax(0,1fr)] md:gap-x-[var(--tl-gap)] md:pb-14 md:pl-0">
           <span
             aria-hidden
             className={`absolute left-0 top-[0.55rem] h-[11px] w-[11px] rounded-full border border-accent md:left-[calc(var(--tl-col)+var(--tl-gap)/2-5px)] ${
@@ -56,8 +56,8 @@ export default function ExperienceTimeline() {
             <p className="mt-2 text-[0.95rem] font-medium text-accent-soft">{exp.role}</p>
             <ul className="mt-7 space-y-3.5">
               {exp.bullets.map((b) => (
-                <li key={b} className="relative max-w-[42rem] pl-6 text-[0.95rem] leading-[1.75] text-muted">
-                  <span aria-hidden className="absolute left-0 top-[0.8em] h-px w-3 bg-accent/70" />
+                <li key={b} className="relative max-w-[42rem] pl-5 text-[0.95rem] md:pl-6 leading-[1.75] text-muted">
+                  <span aria-hidden className="absolute left-0 top-[0.8em] h-px w-2.5 bg-accent/70" />
                   {b}
                 </li>
               ))}

@@ -61,14 +61,13 @@ export default function Navbar() {
           right: 'var(--frame-x)',
           height: 'var(--nav-h)',
           paddingInline: 'var(--pad-x)',
-          background: scrolled || open ? 'rgba(5,5,5,0.96)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(10px)' : undefined,
+          background: scrolled || open ? '#050505' : 'transparent',
           borderBottom: scrolled ? '1px solid var(--color-border)' : '1px solid transparent',
           borderTopLeftRadius: 'var(--frame-radius)',
           borderTopRightRadius: 'var(--frame-radius)',
         }}
       >
-        <a href="#home" aria-label="Mokshagna Maddasani, home" className="flex items-center" onClick={close}>
+        <a href="#home" aria-label="Mokshagna Maddasani, home" className="-ml-1 flex min-h-[44px] min-w-[44px] items-center" onClick={close}>
           <Monogram />
         </a>
 

@@ -18,7 +18,7 @@ export default function Footer() {
           <ul className="space-y-1">
             {navItems.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="inline-block py-1 text-sm text-muted transition-colors hover:text-ink">
+                <a href={n.href} className="inline-flex min-h-[44px] items-center py-1 text-sm text-muted transition-colors hover:text-ink md:min-h-0">
                   {n.label}
                 </a>
               </li>
@@ -29,19 +29,19 @@ export default function Footer() {
           <p className="eyebrow mb-4">Elsewhere</p>
           <ul className="space-y-1 text-sm">
             <li>
-              <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-3 py-1 text-muted transition-colors hover:text-ink">
+              <a href={`mailto:${profile.email}`} className="inline-flex min-h-[44px] items-center gap-3 py-1 text-muted md:min-h-0 transition-colors hover:text-ink">
                 <FiMail aria-hidden className="h-4 w-4 text-accent" />
                 {profile.email}
               </a>
             </li>
             <li>
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 py-1 text-muted transition-colors hover:text-ink">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-3 py-1 text-muted md:min-h-0 transition-colors hover:text-ink">
                 <FaLinkedinIn aria-hidden className="h-4 w-4 text-accent" />
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href={profile.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 py-1 text-muted transition-colors hover:text-ink">
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-3 py-1 text-muted md:min-h-0 transition-colors hover:text-ink">
                 <FaGithub aria-hidden className="h-4 w-4 text-accent" />
                 GitHub
               </a>

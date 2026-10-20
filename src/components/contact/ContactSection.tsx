@@ -33,7 +33,7 @@ export default function ContactSection() {
       </Reveal>
 
       <div className="mt-10 grid gap-14 md:mt-14 md:grid-cols-12 md:gap-8">
-        <Reveal className="md:col-span-4">
+        <Reveal className="md:col-span-5 lg:col-span-4">
           <p className="body-copy text-[1.02rem]">
             I&rsquo;m always happy to talk about software engineering, test automation, or how AI can be put to good use.
             If you have a role, a project, or just a question, write to me.
@@ -46,7 +46,7 @@ export default function ContactSection() {
           </div>
         </Reveal>
 
-        <Reveal as="dl" className="md:col-span-6 md:col-start-7" stagger=":scope > div">
+        <Reveal as="dl" className="md:col-span-7 lg:col-span-6 lg:col-start-7" stagger=":scope > div">
           {details.map((d) => (
             <div key={d.label} className="hairline grid gap-1 py-5 sm:grid-cols-[7rem_1fr] sm:items-baseline">
               <dt className="eyebrow">{d.label}</dt>
@@ -54,7 +54,7 @@ export default function ContactSection() {
                 <a
                   href={d.href}
                   {...(d.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  className="inline-flex items-center gap-3 break-all py-1 text-[1.02rem] text-ink transition-colors hover:text-accent"
+                  className="inline-flex min-h-[44px] items-center gap-3 break-all py-1 text-[1.02rem] text-ink transition-colors hover:text-accent"
                 >
                   <d.Icon aria-hidden className="h-4 w-4 shrink-0 text-accent" />
                   {d.value}

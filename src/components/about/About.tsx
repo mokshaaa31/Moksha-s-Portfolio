@@ -14,7 +14,7 @@ export default function About() {
       />
 
       <div className="mt-10 grid gap-14 md:mt-14 md:grid-cols-12 md:gap-8">
-        <Reveal className="md:col-span-4">
+        <Reveal className="md:col-span-5 lg:col-span-4">
           <dl className="space-y-6">
             {about.facts.map((f) => (
               <div key={f.label} className="hairline pt-4">
@@ -25,7 +25,7 @@ export default function About() {
           </dl>
         </Reveal>
 
-        <div className="md:col-span-6 md:col-start-7">
+        <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
           <Reveal stagger="p" className="space-y-6">
             {about.paragraphs.map((p) => (
               <p key={p} className="body-copy text-[1.02rem]">
