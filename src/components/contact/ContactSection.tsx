@@ -33,7 +33,7 @@ export default function ContactSection() {
       </Reveal>
 
       <div className="mt-10 grid gap-14 md:mt-14 md:grid-cols-12 md:gap-8">
-        <Reveal className="md:col-span-5 lg:col-span-4">
+        <Reveal className="relative z-20 md:col-span-5 lg:col-span-4">
           <p className="body-copy text-[1.02rem]">
             I&rsquo;m always happy to talk about software engineering, test automation, or how AI can be put to good use.
             If you have a role, a project, or just a question, write to me.

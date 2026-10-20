@@ -132,7 +132,7 @@ export default function Navbar() {
                   ref={i === 0 ? firstLinkRef : undefined}
                   href={item.href}
                   onClick={close}
-                  className="display display-sentence block py-2 text-[2.6rem] text-ink hover:text-accent"
+                  className="display display-sentence block py-1.5 text-[1.35rem] text-ink md:text-[1.9rem] hover:text-accent"
                 >
                   {item.label}
                 </a>

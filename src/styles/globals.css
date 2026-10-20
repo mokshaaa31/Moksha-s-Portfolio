@@ -301,7 +301,6 @@ html { scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-b
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* ───────── Current-role pulse ───────── */
-.pulse-dot { position: relative; }
 .pulse-dot::after {
   content: '';
   position: absolute;
